@@ -487,7 +487,7 @@ export class BasicCrawler<Context extends CrawlingContext = BasicCrawlingContext
     protected maxRequestRetries: number;
     protected sameDomainDelayMillis: number;
     protected domainAccessedTime: Map<string, number>;
-    protected domainDelayMillisMap: Map<String, number>;
+    protected domainDelayMillisMap: Map<string, number>;
     protected maxSessionRotations: number;
     protected handledRequestsCount: number;
     protected statusMessageLoggingInterval: number;
@@ -962,7 +962,12 @@ export class BasicCrawler<Context extends CrawlingContext = BasicCrawlingContext
         return stats;
     }
 
-    async setDomainDelaySecs(domain: string, delay: number) {
+    /**
+     * Set the domain-level delay for processing same-domain requests.
+     * @param domain The domain to add
+     * @param delay delay Secs
+     */
+    setDomainDelaySecs(domain: string, delay: number) {
         this.domainDelayMillisMap.set(domain, delay * 1000);
     }
 
